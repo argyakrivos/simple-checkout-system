@@ -41,4 +41,12 @@ class CheckoutApiTests extends FlatSpecLike with Matchers with ScalatestRouteTes
       status shouldBe BadRequest
     }
   }
+
+  it should "return 200 with a receipt of £0.85 for an Orange and an Apple" in {
+    val json = JObject("items" -> JArray(List(JString("Orange"), JString("Apple"))))
+    Post("/checkout", json) ~> routes ~> check {
+      status shouldBe OK
+      responseAs[Receipt] shouldBe Receipt(List(Orange, Apple), 0.85)
+    }
+  }
 }
