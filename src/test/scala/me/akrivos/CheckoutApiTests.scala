@@ -49,4 +49,11 @@ class CheckoutApiTests extends FlatSpecLike with Matchers with ScalatestRouteTes
       responseAs[Receipt] shouldBe Receipt(List(Orange, Apple), 0.85)
     }
   }
+
+  it should "return 400 if the basket is empty" in {
+    val json = JObject("items" -> JArray(List.empty))
+    Post("/checkout", json) ~> sealRoute(routes) ~> check {
+      status shouldBe BadRequest
+    }
+  }
 }
