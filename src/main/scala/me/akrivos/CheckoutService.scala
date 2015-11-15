@@ -8,5 +8,8 @@ trait CheckoutService {
 
 class DefaultCheckoutService(implicit ec: ExecutionContext) extends CheckoutService {
 
-  override def checkout(basket: Basket) = ???
+  override def checkout(basket: Basket) = Future {
+    val total = basket.items.map(_.price).sum
+    Receipt(basket.items, total)
+  }
 }
