@@ -21,6 +21,10 @@ case object Orange extends Item {
   val price: BigDecimal = 0.25
 }
 
-case class Basket(items: List[Item])
+case class Basket(items: List[Item]) {
+  require(items.nonEmpty)
+}
 
-case class Receipt(items: List[Item], total: BigDecimal)
+case class Receipt(items: List[Item], total: BigDecimal) {
+  require(items.nonEmpty)
+}
