@@ -37,4 +37,25 @@ class CheckoutServiceTests extends FlatSpecLike with ScalaFutures with Matchers 
       r shouldBe Receipt(basket.items, 1.45)
     }
   }
+
+  it should "apply Apple offer for 2 Apples (£0.6)" in {
+    val basket = Basket(List.fill(2)(Apple))
+    whenReady(service.checkout(basket)) { r =>
+      r shouldBe Receipt(basket.items, 0.6)
+    }
+  }
+
+  it should "apply Apple offer for 4 Apples (£1.2)" in {
+    val basket = Basket(List.fill(4)(Apple))
+    whenReady(service.checkout(basket)) { r =>
+      r shouldBe Receipt(basket.items, 1.2)
+    }
+  }
+
+  it should "apply Apple offer for 5 Apples (£1.8)" in {
+    val basket = Basket(List.fill(5)(Apple))
+    whenReady(service.checkout(basket)) { r =>
+      r shouldBe Receipt(basket.items, 1.8)
+    }
+  }
 }
