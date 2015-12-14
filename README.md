@@ -1,11 +1,14 @@
 # Simple Checkout System
 
-This is a simple checkout system implementation based on a shop that sells `Items` (Apples & Oranges). Input is a `Basket` which can contain several items and output is a `Receipt` which lists all your items and the total price.
+This is a simple checkout system implementation based on a shop that sells `Items` (Apples, Oranges, Bananas). Input is a `Basket` which can contain several items and output is a `Receipt` which lists all your items and the total price.
 
 ## Current offers
 
-- Apples: buy one, get one free
+- Apples: buy one, get one free*
+- Bananas: buy one, get one free*
 - Oranges: 3 for the price of 2
+
+\* You can mix and match items and the cheapest one will be free.
 
 ## Run
 
