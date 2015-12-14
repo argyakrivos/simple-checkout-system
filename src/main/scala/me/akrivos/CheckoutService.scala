@@ -15,12 +15,18 @@ class DefaultCheckoutService(implicit ec: ExecutionContext) extends CheckoutServ
   }
 
   private def getOfferSavings(basket: Basket): BigDecimal = {
-    // buy one, get one free on Apples
-    val appleSavings = basket.items.count(_ == Apple) / 2 * Apple.price
+    // buy one, get one free on Apples and/or Bananas
+    val buyOneGetOneFreeSavings = {
+      val items = basket.items.filter(x => x == Banana || x == Apple)
+      if (items.length > 1)
+        items.sortBy(_.price).take(items.length / 2).map(_.price).sum
+      else
+        BigDecimal(0)
+    }
 
     // 3 for the price of 2 on Oranges
     val orangeSavings = basket.items.count(_ == Orange) / 3 * Orange.price
 
-    appleSavings + orangeSavings
+    buyOneGetOneFreeSavings + orangeSavings
   }
 }

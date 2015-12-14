@@ -21,6 +21,11 @@ case object Orange extends Item {
   val price: BigDecimal = 0.25
 }
 
+case object Banana extends Item {
+  val name = "Banana"
+  val price: BigDecimal = 0.2
+}
+
 case class Basket(items: List[Item]) {
   require(items.nonEmpty)
 }
